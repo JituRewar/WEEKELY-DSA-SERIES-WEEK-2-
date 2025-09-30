@@ -179,11 +179,6 @@ tests/sample_tests.txt — sample input / expected output for quick checks
 How to run (locally)
 
 C++
-#include<iostream>
-#include<vector>
-using namespace std;
-int main(){
-    //// MOORE'S ALGORITHUM
 vector<int> nums = {1,21,4,21,21};
 int freq = 0,ans = 0;
 int n = nums.size();
@@ -198,10 +193,9 @@ for(int i=0;i<n;i++){
 }  
 cout<<ans;
 
+
+
     
 
-
-return 0;
-}
         
     
