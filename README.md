@@ -141,5 +141,67 @@ cout << (sol.containsDuplicate(arr) ? "true" : "false") << "\n";
 return 0;
 }
 
+
+Day 3 — Majority Element
+
+Problem
+
+Given an array nums of size n, return the majority element. The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+This is the LeetCode problem 169. Majority Element.
+
+Approaches
+
+Hash map (counting) — Count frequencies and return the element with count > n/2.
+
+Time: O(n)
+
+Space: O(n)
+
+Boyer–Moore Voting Algorithm — Maintain a candidate and a counter. When counter is 0, set candidate to current element; increment/decrement counter based on match. Candidate is the majority.
+
+Time: O(n)
+
+Space: O(1)
+
+Recommended (Boyer–Moore)
+
+Because it uses constant extra space and linear time, Boyer–Moore is ideal when the majority is guaranteed.
+
+Files
+
+code/majority_element.cpp — C++ solution (LeetCode style + simple main for local testing)
+
+code/majority_element.py — Python solution
+
+tests/sample_tests.txt — sample input / expected output for quick checks
+
+How to run (locally)
+
+C++
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+    //// MOORE'S ALGORITHUM
+vector<int> nums = {1,21,4,21,21};
+int freq = 0,ans = 0;
+int n = nums.size();
+for(int i=0;i<n;i++){
+    if(freq==0){
+        ans = nums[i];
+    }
+    if(ans==nums[i]){
+        freq++;
+    }
+    else freq--;
+}  
+cout<<ans;
+
+    
+
+
+return 0;
+}
         
     
