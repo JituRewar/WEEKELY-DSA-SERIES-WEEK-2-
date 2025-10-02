@@ -1,0 +1,108 @@
+# 📘 Weekly DSA Series 2 - Day 4
+  
+**Topic:** String Problems in DSA  
+**Platform:** LeetCode  
+**Problems Covered:**  
+- [#125 - Valid Palindrome]
+- [#1910 - Remove All Occurrences of a Substring]
+
+---
+
+## ✅ Problem 1: Valid Palindrome (#125)
+
+### Problem Statement:
+Determine whether a given string is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+### Key Learnings:
+- Application of **two-pointer technique**.  
+- Efficient handling of **non-alphanumeric characters**.  
+- Importance of **character normalization (`tolower`)**.  
+
+### Code Implementation: [`valid_palindrome.cpp`](./valid_palindrome.cpp)
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    bool isalphanumeric(char ch){
+        if((ch>='0' && ch<='9') || (tolower(ch)>='a' && tolower(ch)<='z')){
+            return true;
+        }
+        return false;
+    }
+    bool isPalindrome(string s) {
+        int st=0,end=s.length()-1;
+        while(st<end){
+          if(!isalphanumeric(s[st])){
+                st++;continue;
+          }
+           if(!isalphanumeric(s[end])){
+                end--;continue;
+          }
+            if(tolower(s[st])!=tolower(s[end])){
+                return false;
+            }
+            st++;
+            end--;
+        }
+        return true;
+        
+    }
+};
+
+// Example usage
+int main() {
+    Solution sol;
+    string s = "A man, a plan, a canal: Panama";
+    cout << (sol.isPalindrome(s) ? "True" : "False") << endl;
+    return 0;
+}
+
+
+✅ Problem 2: Remove All Occurrences of a Substring (#1910)
+Problem Statement:
+
+Given two strings s and part, remove all occurrences of part from s until no more instances remain.
+
+Key Learnings:
+
+Usage of string::find() and erase() methods.
+
+Concept of iterative substring removal until no match remains.
+
+Real-world application for pattern elimination in strings.
+
+Code Implementation: remove_occurrences.cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    string removeOccurrences(string s, string part) {
+        while(s.length()> 0 && s.find(part)<s.length()){
+            s.erase(s.find(part),part.length());
+        }
+        return s;
+    }
+};
+
+// Example usage
+int main() {
+    Solution sol;
+    string s = "daabcbaabcbc", part = "abc";
+    cout << sol.removeOccurrences(s, part) << endl; // Output: "dab"
+    return 0;
+}
+
+📌 Day 4 Summary:
+
+Strengthened concepts of string manipulation in C++.
+
+Practiced palindrome checking with edge cases.
+
+Implemented substring removal using find() and erase().
+
+Improved confidence with two-pointer technique and string library functions.
+
+✨ Daily consistency in solving DSA problems helps in mastering problem-solving skills step by step
