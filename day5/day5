@@ -1,0 +1,114 @@
+# 📘 Weekly DSA Series 2 - Day 5
+
+Today I solved the following **DSA problems on LeetCode** in C++:
+
+- **242. Valid Anagram**
+- **283. Move Zeroes**
+- **26. Remove Duplicates from Sorted Array**
+- **567. Permutation in String**
+
+---
+
+## 🔹 Problems & Solutions
+
+### 1️⃣ [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+Check if two strings are anagrams.
+
+### 2️⃣ [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
+Move all zeroes to the end while maintaining relative order.
+
+### 3️⃣ [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+Remove duplicates in-place from a sorted array.
+
+### 4️⃣ [567. Permutation in String](https://leetcode.com/problems/permutation-in-string/)
+Check if one string is a permutation of another.
+
+---
+
+## 💻 Language Used
+- **C++**
+
+---
+🚀 Part of my **Weekly DSA Series 2 (Day 5)**  
+
+solution 242
+                                     class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length()!=t.length()) {
+            return false;
+        }
+      sort(s.begin(),s.end());
+      sort(t.begin(),t.end());
+      return s==t;
+    
+    
+    }
+};
+                                     solution 283
+                                     class Solution {
+public:
+    void moveZeroes(vector<int>& arr) {
+        int zero=0;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]!=0){
+                swap(arr[i],arr[zero]);
+                zero++;
+            }
+        }
+            
+        
+    }
+};
+                                     solution 26
+                                     class Solution {
+public:
+    int removeDuplicates(vector<int>& arr) {
+   int k=1;
+   for(int i=1;i<arr.size();i++){
+    if(arr[i]!=arr[i-1]) {
+        arr[k]=arr[i];
+        k++;
+    }
+   }
+    
+   
+
+    return k;
+    }
+};
+                                     solution 567
+                                     class Solution {
+public:
+bool isfreq(int freq1[],int freq2[]){
+        for(int i=0;i<26;i++){
+            if(freq1[i]!=freq2[i]){
+                return false;
+            }
+        }
+        return true;
+}
+    bool checkInclusion(string s1, string s2) {
+        int freq[26]={0};
+        for(int i=0;i<s1.length();i++){
+            freq[s1[i]-'a']++;
+        }
+        int windsize=s1.length();
+        for(int i=0;i<s2.length();i++){
+            int windidx=0,idx=i;
+            int windfreq[26]={0};
+            while(windidx<windsize && idx<s2.length()){
+                windfreq[s2[idx]-'a']++;
+                windidx++;
+                idx++;
+            }
+             if(isfreq(freq,windfreq)){
+        return true;
+      }
+
+        }
+     
+        
+        return false;
+    }
+};
