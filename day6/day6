@@ -1,0 +1,125 @@
+# Day 6 — DSA Weekly Series 2
+
+Today I solved two interesting string problems on LeetCode:
+
+* **#151 Reverse Words in a String**
+* **#443 String Compression**
+
+Both were implemented in **C++** as part of my daily DSA practice.
+
+---
+
+## 📂 Folder Structure
+
+```
+Day-6/
+ ├── README.md
+ ├── 151_reverse_words_in_a_string.cpp
+ └── 443_string_compression.cpp
+```
+
+---
+
+## 📘 Problems Solved
+
+### 1. Reverse Words in a String (#151)
+
+* Input: A string with words separated by spaces (may contain multiple spaces).
+* Task: Reverse the order of words, remove extra spaces.
+* Approach: Trim spaces, split words, reverse vector, and join.
+
+### 2. String Compression (#443)
+
+* Input: A character array.
+* Task: Compress characters in-place and return new length.
+* Approach: Two-pointer technique to compress consecutive characters.
+
+---
+
+## 📌 C++ Solutions
+
+### 151. Reverse Words in a String
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    string reverseWords(string s) {
+        
+        string ans="";
+        int n=s.length();
+        reverse(s.begin(),s.end());
+        for(int i=0;i<n;i++){
+            string word="";
+            while(i<n && s[i]!=' '){
+                word+=s[i];
+                i++;
+            }
+            reverse(word.begin(),word.end());
+            if(word.length()>0){
+                ans+=" "+word;
+            }
+            
+        }
+return ans.substr(1);   
+    }
+};
+
+int main() {
+    string s = "  the sky   is blue  ";
+    cout << reverseWords(s) << "\n";
+}
+```
+
+---
+
+### 443. String Compression
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int n=chars.size();
+        int idx=0;
+        for(int i=0;i<n;i++){
+            char ch = chars[i];
+            int count=0;
+            while(i<n && chars[i]==ch){
+                count++; i++;
+            }
+
+            if(count==1){
+                chars[idx++]=ch;
+            }
+            else{
+                chars[idx++]=ch;
+                string str=to_string(count);
+                for(char dig : str){
+                     chars[idx++]=dig; 
+                }
+               
+            }
+            i--;
+        }
+        chars.resize(idx);
+        return idx;
+    }
+};
+
+int main() {
+    vector<char> v = {'a','a','b','b','c','c','c'};
+    int len = compress(v);
+    for (int i = 0; i < len; i++) cout << v[i];
+    cout << "\n";
+}
+```
+
+---
+
+## ✅ Summary
+
+Day 6 was all about solving string manipulation problems, focusing on **efficient space handling** and **in-place compression** techniques.
